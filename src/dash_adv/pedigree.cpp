@@ -355,7 +355,7 @@ void Pedigree::clusterRecurse( list< Vertex >& map , MinCutDB * mcdb )
 
 float Pedigree::compareSaved( Graph * key , Graph& sg )
 {
-	size_t size = getSize();
+	size_t size = sample_vertex.size();
 	dynamic_bitset<> bits( size );
 	float dif = 0;
 	Graph::vertex_iterator vi , vi_end;
@@ -491,7 +491,7 @@ void Pedigree::print()
 
 size_t Pedigree::getSize()
 {
-	return sample_vertex.size();
+	return fam.size();
 }
 
 void Pedigree::connect( Match * m )

@@ -1,0 +1,50 @@
+DASH:	DASH Associates Shared Haplotypes
+	May 27, 2011
+------------------------------------------------------------------------------------------
+Developed by Alexander Gusev and the
+Itsik Pe'er Lab of Computational Genetics
+at Columbia University, New York City
+
+Please see online documentation for complete details:
+------------------------------------------------------------------------------------------
+#	http://www.cs.columbia.edu/~gusev/dash/						 #
+------------------------------------------------------------------------------------------
+
+# Compiling										 #
+------------------------------------------------------------------------------------------
+All software and tools can be compiled by entering the respective subdirectory 
+in the 'src' directory (src/tools , src/dash_cc, or src/dash_adv) and typing `make`.
+
+# Running										 #
+------------------------------------------------------------------------------------------
+A pipeline has been provided for a complete DASH (dash_cc) analysis starting with unphased
+PLINK format files and ending with coded PLINK format haplotypes. For advanced usage and
+fine-mapping, please see the dash_adv documentation specifically
+
+Scripts for running each step of the analysis have been written in BASH
+and are in the main directory. For details on executing each script, simply
+call `bash script_name`. A typycal analysis containg unphased PLINK-format files
+my_input.ped, my_input.map, my_input.fam would be run in the following order:
+	bash phase.sh my_input.ped my_input.map my_output
+	bash gline.for_dash.sh my_output.phased.ped my_output.phased.map my_output
+	bash dash_cc.sh my_output my_input.fam my_output
+To generate PLINK format my_output.dash_cc.* files coding haplotypes suitable for association.
+
+If you would like to use the GERMLINE or BEAGLE steps of the
+pipeline, please link the respective binaries into the 'bin' directory.
+
+The DASH executables can be run directly and accept IBD input through the standard input
+one chromosome per file and a single segment per line, with each line whitespace delimited
+and containing the following columns:
+
+1.	Family ID 1
+2.	Individual ID 1
+3.	Family ID 2
+4.	Individual ID 2
+5.	Segment start (bp)
+6.	Segment end (bp)
+
+# Contact										 #
+------------------------------------------------------------------------------------------
+If you have any questions or comments regarding the software,
+please contact the developers at: { gusev@cs.columbia.edu | itsik@cs.columbia.edu }
